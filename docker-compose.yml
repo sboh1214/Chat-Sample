@@ -14,8 +14,7 @@ services:
       - db:/var/lib/postgresql/data/pgdata
 
   backend:
-    build:
-      context: ./backend
+    image: sboh1214/chat-sample-backend:latest
     restart: always
     depends_on: 
       - db
@@ -32,8 +31,7 @@ services:
       - DB_HOST=db
 
   frontend:
-    build:
-      context: ./frontend
+    image: sboh1214/chat-sample-frontend:latest
     restart: always
     depends_on: 
       - backend
