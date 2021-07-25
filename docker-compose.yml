@@ -1,0 +1,53 @@
+version: "3"
+services:
+  db:
+    image: postgres:13-alpine
+    restart: always
+    networks: 
+      - db
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=sboh1214
+      - POSTGRES_DB=chat
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+
+  backend:
+    build:
+      context: ./backend
+    restart: always
+    depends_on: 
+      - db
+    networks: 
+      - db
+      - proxy
+    ports:
+      - 3000:3008
+    environment:
+      - DB_NAME=chat
+      - DB_USERNAME=sboh1214
+      - DB_PASSWORD=1234
+      - FRONT_HOST_PORT=chat.sboh.dev
+      - DB_HOST=db
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: always
+    depends_on: 
+      - backend
+    networks: 
+      - proxy
+    ports:
+      - 80:80
+    volumes:
+      - ./frontend/nginx.conf:/etc/nginx/nginx.conf
+      - ./logs:/var/log/nginx
+
+volumes:
+  db:
+
+networks:
+  db: 
+  proxy:
