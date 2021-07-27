@@ -12,7 +12,7 @@ RUN apt-get install -y nodejs
 
 WORKDIR /usr/src/2021-summer-wheel-assignment
 
-ENV VUE_APP_BACK_HOST_PORT=54.180.209.131
+ENV VUE_APP_BACK_HOST_PORT=ec2-54-180-209-131.ap-northeast-2.compute.amazonaws.com
 
 RUN npm install
 RUN npm run build

@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:13-alpine
     restart: always
-    networks: 
+    networks:
       - db
     environment:
       - POSTGRES_PASSWORD=1234
@@ -16,9 +16,9 @@ services:
   backend:
     image: sboh1214/chat-sample-backend:latest
     restart: always
-    depends_on: 
+    depends_on:
       - db
-    networks: 
+    networks:
       - db
       - proxy
     ports:
@@ -27,15 +27,15 @@ services:
       - DB_NAME=chat
       - DB_USERNAME=sboh1214
       - DB_PASSWORD=1234
-      - FRONT_HOST_PORT=54.180.209.131
+      - FRONT_HOST_PORT=ec2-54-180-209-131.ap-northeast-2.compute.amazonaws.com
       - DB_HOST=db
 
   frontend:
     image: sboh1214/chat-sample-frontend:latest
     restart: always
-    depends_on: 
+    depends_on:
       - backend
-    networks: 
+    networks:
       - proxy
     ports:
       - 80:80
@@ -47,5 +47,5 @@ volumes:
   db:
 
 networks:
-  db: 
+  db:
   proxy:
