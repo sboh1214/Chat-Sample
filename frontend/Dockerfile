@@ -12,7 +12,7 @@ RUN apt-get install -y nodejs
 
 WORKDIR /usr/src/2021-summer-wheel-assignment
 
-ENV VUE_APP_BACK_HOST_PORT=chat.sboh.dev
+ENV VUE_APP_BACK_HOST_PORT=54.180.209.131
 
 RUN npm install
 RUN npm run build

@@ -27,7 +27,7 @@ services:
       - DB_NAME=chat
       - DB_USERNAME=sboh1214
       - DB_PASSWORD=1234
-      - FRONT_HOST_PORT=chat.sboh.dev
+      - FRONT_HOST_PORT=54.180.209.131
       - DB_HOST=db
 
   frontend:
