@@ -21,8 +21,6 @@ services:
     networks:
       - db
       - proxy
-    ports:
-      - 3000:3008
     environment:
       - DB_NAME=chat
       - DB_USERNAME=sboh1214
